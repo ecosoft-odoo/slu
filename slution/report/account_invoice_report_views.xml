@@ -1,0 +1,27 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="account.filter_invoice_report_salespersons" model="ir.filters">
+        <field name="context">{'group_by': ['invoice_date:month', 'salesperson_id']}</field>
+    </record>
+
+    <record id="account.filter_invoice_refund" model="ir.filters">
+        <field name="context">{'group_by': ['invoice_date:month', 'salesperson_id']}</field>
+    </record>
+
+    <record id="view_account_invoice_report_search" model="ir.ui.view">
+        <field name="name">account.invoice.report.search</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <field name="invoice_user_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="invoice_user_id" position="after">
+                <field name="salesperson_id"/>
+            </field>
+            <filter name="user" position="attributes">
+                <attribute name="context">{'group_by': 'salesperson_id'}</attribute>
+            </filter>
+        </field>
+    </record>
+</odoo>
