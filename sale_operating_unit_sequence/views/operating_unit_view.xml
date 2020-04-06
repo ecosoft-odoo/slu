@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="operating_unit.view_operating_unit_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='main_group']" position="inside">
-                <field name="so_sequence_id" />
+                <field name="sale_sequence_id" />
             </xpath>
         </field>
     </record>

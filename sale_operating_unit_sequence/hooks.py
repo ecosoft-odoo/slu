@@ -10,7 +10,7 @@ def assign_ou_sequences(cr, registry):
         operating_unit_obj = env["operating.unit"]
         sequence_obj = env["ir.sequence"]
         for operating_unit in operating_unit_obj.search([]):
-            so_sequence = sequence_obj.create(
+            sale_sequence = sequence_obj.create(
                 {
                     "name": "Sale Order of {}".format(operating_unit.name),
                     "code": "sale.order.{}".format(operating_unit.code),
@@ -19,4 +19,4 @@ def assign_ou_sequences(cr, registry):
                     "company_id": operating_unit.company_id.id,
                 }
             )
-            operating_unit.write({"so_sequence_id": so_sequence.id})
+            operating_unit.write({"sale_sequence_id": sale_sequence.id})

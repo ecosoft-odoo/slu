@@ -7,7 +7,7 @@ from odoo import fields, models
 class OperatingUnit(models.Model):
     _inherit = "operating.unit"
 
-    so_sequence_id = fields.Many2one(
+    sale_sequence_id = fields.Many2one(
         comodel_name="ir.sequence",
         string="Sale Order Sequence",
         help="Sequence of sale order with this operating unit",
