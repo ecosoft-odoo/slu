@@ -10,7 +10,7 @@ def assign_ou_sequences(cr, registry):
         operating_unit_obj = env["operating.unit"]
         sequence_obj = env["ir.sequence"]
         for ou in operating_unit_obj.search([]):
-            payment_sequence = sequence_obj.create(
+            payment_sequence = sequence_obj.create([
                 {
                     "name": "Payment Transfer of {}".format(ou.name),
                     "code": "account.payment.transfer.{}".format(ou.code),
@@ -46,7 +46,7 @@ def assign_ou_sequences(cr, registry):
                     "padding": 5,
                     "company_id": ou.company_id.id,
                 },
-            )
+            ])
             ou.write(
                 {
                     "payment_transfer_seq_id": payment_sequence[0].id,
