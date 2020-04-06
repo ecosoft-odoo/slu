@@ -5,7 +5,7 @@
     "name": "Accounting Sequence by Operating Unit",
     "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "category": "Sale",
+    "category": "Accounting & Finance",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/operating-unit",
     "depends": ["account_operating_unit"],
