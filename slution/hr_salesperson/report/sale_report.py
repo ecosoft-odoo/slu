@@ -1,7 +1,7 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class SaleReport(models.Model):
@@ -14,6 +14,7 @@ class SaleReport(models.Model):
         comodel_name="hr.employee",
     )
 
+    @api.model
     def _query(self, with_clause="", fields={}, groupby="", from_clause=""):
         fields["salesperson_id"] = ", s.salesperson_id as salesperson_id"
         groupby += ", s.salesperson_id"

@@ -1,7 +1,7 @@
 # Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountInvoiceReport(models.Model):
@@ -14,6 +14,7 @@ class AccountInvoiceReport(models.Model):
         comodel_name="hr.employee",
     )
 
+    @api.model
     def _select(self):
         select_str = super()._select()
         select_str += """
@@ -21,6 +22,7 @@ class AccountInvoiceReport(models.Model):
         """
         return select_str
 
+    @api.model
     def _group_by(self):
         group_by_str = super()._group_by()
         group_by_str += """

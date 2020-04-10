@@ -15,6 +15,7 @@ class SaleOrder(models.Model):
         domain=lambda self: self._get_domain_salesperson_id(),
     )
 
+    @api.model
     def _get_domain_salesperson_id(self):
         try:
             return [("department_id", "=", self.env.ref("hr.dep_sales").id)]

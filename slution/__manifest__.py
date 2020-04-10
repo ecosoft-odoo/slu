@@ -16,6 +16,7 @@
         "hr_salesperson/views/sale_views.xml",
         "hr_salesperson/views/res_partner_views.xml",
         "hr_salesperson/views/account_move_views.xml",
+        "hr_salesperson/views/account_payment_views.xml",
         "purchase_ext/views/purchase_views.xml"],
     "installable": True,
 }
