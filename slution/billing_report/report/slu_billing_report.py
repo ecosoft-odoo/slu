@@ -8,6 +8,9 @@ class SLUBillingReport(models.Model):
     _name = "slu.billing.report"
     _auto = False
 
+    salesperson_id = fields.Many2one(
+        comodel_name="hr.employee",
+    )
     invoice_date = fields.Date()
     name = fields.Char()
     amount_total = fields.Float()
@@ -17,7 +20,7 @@ class SLUBillingReport(models.Model):
     def _get_sql(self):
         sql = """
             SELECT ROW_NUMBER() over(ORDER BY am.id, ap.id) as id,
-                   am.invoice_date, am.name,
+                   am.salesperson_id, am.invoice_date, am.name,
                    CASE WHEN am.is_installment = False THEN am.amount_total
                    ELSE ap.amount END AS amount_total,
                    CASE WHEN am.is_installment = False THEN am.invoice_date

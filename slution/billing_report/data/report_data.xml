@@ -2,7 +2,7 @@
     <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
     <report string="Billing Report PDF"
             id="action_slu_billing_report_pdf"
-            model="slu.billing.report"
+            model="billing.report.wizard"
             name="slution.slu_billing_report_pdf"
             file="slution.slu_billing_report_pdf"
             report_type="qweb-pdf"
