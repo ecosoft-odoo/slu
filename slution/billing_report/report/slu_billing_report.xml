@@ -2,8 +2,9 @@
     <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
     <template id="slu_billing_report">
         <div class="header">
+            <h3>รายงานใบวางบิล</h3>
             <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
-                <tr>
+                <tr style="background-color: #F0F0F0;">
                     <th class="text-center">Salesperson</th>
                     <th class="text-center">Customer</th>
                     <th class="text-center">Date From</th>
@@ -23,38 +24,42 @@
             <t t-foreach="reports.mapped('partner_id')" t-as="partner">
                 <p t-field="partner.display_name"/>
                 <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
-                    <tr>
-                        <th class="text-center">Invoice Date</th>
-                        <th class="text-center">Invoice Number</th>
-                        <th class="text-center">Amount</th>
-                        <th class="text-center">Vat</th>
-                        <th class="text-center">Total Amount</th>
-                        <th class="text-center">Due Date</th>
-                        <th class="text-center">Memo</th>
-                    </tr>
-                    <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner)" t-as="line">
-                        <td class="text-right"><span t-field="line.invoice_date"/></td>
-                        <td class="text-left"><span t-field="line.name"/></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"><span t-field="line.amount_total"/></td>
-                        <td class="text-right"><span t-field="line.invoice_date_due"/></td>
-                        <td class="text-left"><span t-field="line.communication"/></td>
-                    </tr>
-                    <tr>
-                        <td class="text-right" colspan="2"><b>Total</b></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"></td>
-                        <td class="text-left" colspan="2"></td>
-                    </tr>
-                    <tr t-if="len(reports.mapped('partner_id')) == i">
-                        <td class="text-right" colspan="2"><b>Grand Total</b></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"></td>
-                        <td class="text-right"></td>
-                        <td class="text-left" colspan="2"></td>
-                    </tr>
+                    <thead>
+                        <tr style="background-color: #F0F0F0;">
+                            <th class="text-center">Invoice Date</th>
+                            <th class="text-center">Invoice Number</th>
+                            <th class="text-center">Amount</th>
+                            <th class="text-center">Vat</th>
+                            <th class="text-center">Total Amount</th>
+                            <th class="text-center">Due Date</th>
+                            <th class="text-center">Memo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner)" t-as="line">
+                            <td class="text-right"><span t-field="line.invoice_date"/></td>
+                            <td class="text-left"><span t-field="line.name"/></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"><span t-field="line.amount_total"/></td>
+                            <td class="text-right"><span t-field="line.invoice_date_due"/></td>
+                            <td class="text-left"><span t-field="line.communication"/></td>
+                        </tr>
+                        <tr style="background-color: #F0F0F0;">
+                            <td class="text-right" colspan="2"><b>Total</b></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-left" colspan="2"></td>
+                        </tr>
+                        <tr t-if="len(reports.mapped('partner_id')) == i" style="background-color: #F0F0F0;">
+                            <td class="text-right" colspan="2"><b>Grand Total</b></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-right"></td>
+                            <td class="text-left" colspan="2"></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <t t-set="i" t-value="i+1"/>
             </t>
