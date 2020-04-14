@@ -4,6 +4,46 @@
         <div class="header">
         </div>
         <div class="article">
+            <t t-set="i" t-value="1"/>
+            <t t-set="reports" t-value="o.report_ids"/>
+            <t t-foreach="reports.mapped('partner_id')" t-as="partner">
+                <p t-field="partner.display_name"/>
+                <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
+                    <tr>
+                        <th class="text-center">Invoice Date</th>
+                        <th class="text-center">Invoice Number</th>
+                        <th class="text-center">Amount</th>
+                        <th class="text-center">Vat</th>
+                        <th class="text-center">Total Amount</th>
+                        <th class="text-center">Due Date</th>
+                        <th class="text-center">Memo</th>
+                    </tr>
+                    <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner)" t-as="line">
+                        <td class="text-right"><span t-field="line.invoice_date"/></td>
+                        <td class="text-left"><span t-field="line.name"/></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"><span t-field="line.amount_total"/></td>
+                        <td class="text-right"><span t-field="line.invoice_date_due"/></td>
+                        <td class="text-left"><span t-field="line.communication"/></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right" colspan="2"><b>Total</b></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-left" colspan="2"></td>
+                    </tr>
+                    <tr t-if="len(reports.mapped('partner_id')) == i">
+                        <td class="text-right" colspan="2"><b>Grand Total</b></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-left" colspan="2"></td>
+                    </tr>
+                </table>
+                <t t-set="i" t-value="i+1"/>
+            </t>
         </div>
     </template>
 
