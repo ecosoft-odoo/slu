@@ -1,0 +1,17 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="view_account_payment_form_ext" model="ir.ui.view">
+        <field name="name">account.payment.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="is_installment" invisible="context.get('active_model') == 'account.move'" attrs="{'invisible': [('partner_type', '!=', 'customer')]}"/>
+                <field name="installment_invoice_id" options="{'no_create': True}" domain="[('is_installment', '=', True)]" invisible="context.get('active_model') == 'account.move'" attrs="{'invisible': ['|', ('partner_type', '!=', 'customer'), ('is_installment', '=', False)], 'required': [('is_installment', '=', True)]}"/>
+            </field>
+            <field name="communication" position="attributes">
+                <attribute name="attrs">{'required': [('is_installment', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
