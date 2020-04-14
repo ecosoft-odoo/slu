@@ -6,5 +6,6 @@
             name="slution.slu_billing_report_pdf"
             file="slution.slu_billing_report_pdf"
             report_type="qweb-pdf"
-            print_report_name="'Billing Report'"/>
+            print_report_name="'Billing Report'"
+            paperformat="slution.slution_paperformat_billing_report"/>
 </odoo>
