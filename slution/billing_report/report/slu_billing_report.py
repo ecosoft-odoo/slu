@@ -10,16 +10,23 @@ class SLUBillingReport(models.Model):
 
     invoice_date = fields.Date()
     name = fields.Char()
-    amount_untaxed = fields.Float()
     amount_total = fields.Float()
     invoice_date_due = fields.Date()
     communication = fields.Char()
 
     def _get_sql(self):
         sql = """
-            SELECT am.id, am.invoice_date, am.name, am.amount_untaxed,
-                   am.amount_total, am.invoice_date_due, null as communication
+            SELECT ROW_NUMBER() over(ORDER BY am.id, ap.id) as id,
+                   am.invoice_date, am.name,
+                   CASE WHEN am.is_installment = False THEN am.amount_total
+                   ELSE ap.amount END AS amount_total,
+                   CASE WHEN am.is_installment = False THEN am.invoice_date
+                   ELSE ap.payment_date END AS invoice_date_due,
+                   CASE WHEN am.is_installment = False THEN NULL
+                   ELSE ap.communication END AS communication
             FROM account_move am
+            LEFT JOIN account_payment ap ON am.id = ap.installment_invoice_id
+            AND ap.state = 'draft'
             WHERE am.type IN ('out_invoice', 'out_refund') AND
                   am.state = 'posted' AND am.invoice_payment_state = 'not_paid'
         """
