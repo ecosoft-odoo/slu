@@ -41,7 +41,7 @@
                             <td class="text-left"><span t-field="line.name"/></td>
                             <td class="text-right"></td>
                             <td class="text-right"></td>
-                            <td class="text-right"><span t-field="line.amount_total"/></td>
+                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(line.amount_total)"/></td>
                             <td class="text-right"><span t-field="line.invoice_date_due"/></td>
                             <td class="text-left"><span t-field="line.communication"/></td>
                         </tr>
