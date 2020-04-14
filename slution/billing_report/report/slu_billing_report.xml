@@ -2,6 +2,20 @@
     <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
     <template id="slu_billing_report">
         <div class="header">
+            <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
+                <tr>
+                    <th class="text-center">Salesperson</th>
+                    <th class="text-center">Customer</th>
+                    <th class="text-center">Date From</th>
+                    <th class="text-center">Date To</th>
+                </tr>
+                <tr>
+                    <td class="text-center"><span t-field="o.salesperson_id.display_name"/></td>
+                    <td class="text-center"><span t-field="o.partner_id.display_name"/></td>
+                    <td class="text-center"><span t-field="o.date_from"/></td>
+                    <td class="text-center"><span t-field="o.date_to"/></td>
+                </tr>
+            </table>
         </div>
         <div class="article">
             <t t-set="i" t-value="1"/>
