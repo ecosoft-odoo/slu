@@ -1,0 +1,9 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <template id="slu_billing_report_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+            </t>
+        </t>
+    </template>
+</odoo>

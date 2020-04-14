@@ -29,4 +29,7 @@ class BillingReportWizard(models.TransientModel):
         return True
 
     def button_export_pdf(self):
-        return True
+        self.ensure_one()
+        action = self.env.ref("slution.action_slu_billing_report_pdf")
+        report = self.env["slu.billing.report"].search([])
+        return action.report_action(report, config=False)
