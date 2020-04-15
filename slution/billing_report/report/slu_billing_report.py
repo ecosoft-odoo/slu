@@ -24,9 +24,10 @@ class SLUBillingReport(models.Model):
         sql = """
             SELECT ROW_NUMBER() over(ORDER BY am.id, ap.id) as id,
                    am.salesperson_id, am.partner_id, am.invoice_date, am.name,
-                   CASE WHEN am.is_installment = False THEN am.amount_total
-                   ELSE ap.amount END AS amount_total,
-                   CASE WHEN am.is_installment = False THEN am.invoice_date
+                   (CASE WHEN am.type = 'out_invoice' THEN 1 ELSE -1 END) *
+                   (CASE WHEN am.is_installment = False THEN am.amount_total
+                   ELSE ap.amount END) AS amount_total,
+                   CASE WHEN am.is_installment = False THEN am.invoice_date_due
                    ELSE ap.payment_date END AS invoice_date_due,
                    CASE WHEN am.is_installment = False THEN NULL
                    ELSE ap.communication END AS communication
