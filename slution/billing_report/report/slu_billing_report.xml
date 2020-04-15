@@ -1,5 +1,20 @@
 <odoo>
     <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <template id="assets_backend" name="slu_billing_report assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/slution/billing_report/static/src/js/slu_billing_report_backend.js"/>
+        </xpath>
+    </template>
+
+    <template id="slu_billing_report_html">
+        <div style="padding-top: 10px; width: 90%; margin-right: auto; margin-left: auto; font-family: Helvetica, Arial;">
+            <div class="button_row">
+                <button class="o_slu_billing_report_print btn btn-sm oe_button"><span class="fa fa-print"/>Print</button>
+            </div>
+            <t t-call="slution.slu_billing_report"/>
+        </div>
+    </template>
+
     <template id="slu_billing_report">
         <div class="header">
             <h3>รายงานใบวางบิล</h3>

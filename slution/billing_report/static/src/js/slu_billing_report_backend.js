@@ -11,7 +11,6 @@ odoo.define("slution.slu_billing_report_backend", function (require) {
         // Stores all the parameters of the action.
         events: {
             "click .o_slu_billing_report_print": "print",
-            "click .o_slu_billing_report_export": "export",
         },
         init: function (parent, action) {
             this._super.apply(this, arguments);
@@ -81,19 +80,8 @@ odoo.define("slution.slu_billing_report_backend", function (require) {
             var self = this;
             this._rpc({
                 model: this.given_context.model,
-                method: 'print_report',
-                args: [this.given_context.active_id, 'qweb-pdf'],
-                context: self.odoo_context,
-            }).then(function (result) {
-                self.do_action(result);
-            });
-        },
-        export: function () {
-            var self = this;
-            this._rpc({
-                model: this.given_context.model,
-                method: 'print_report',
-                args: [this.given_context.active_id, 'xlsx'],
+                method: 'button_export_pdf',
+                args: [this.given_context.active_id],
                 context: self.odoo_context,
             }).then(function (result) {
                 self.do_action(result);
