@@ -10,4 +10,5 @@ class AccountMove(models.Model):
     is_installment = fields.Boolean(
         string="Is Installment ?",
         default=False,
+        copy=False,
     )

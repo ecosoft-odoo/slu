@@ -10,10 +10,12 @@ class AccountPayment(models.Model):
     is_installment = fields.Boolean(
         string="Is Installment ?",
         default=False,
+        copy=False,
     )
     installment_invoice_id = fields.Many2one(
         comodel_name="account.move",
         string="Invoice Ref",
+        copy=False,
     )
 
     @api.onchange("installment_invoice_id")
