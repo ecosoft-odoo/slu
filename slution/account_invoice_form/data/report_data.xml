@@ -7,30 +7,5 @@
             file="slution.slution_invoice_form_pdf"
             report_type="qweb-pdf"
             print_report_name="object.display_name"
-            paperformat="slution.paperformat_slution"/>
-
-    <!-- Hide Menu -->
-    <!-- <report
-        id="account_invoices"
-        model="account.move"
-        string="Invoices"
-        report_type="qweb-pdf"
-        name="account.report_invoice_with_payments"
-        file="account.report_invoice_with_payments"
-        attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
-        print_report_name="(object._get_report_base_filename())"
-        groups="account.group_account_invoice"
-        menu="False"
-    />
-    <report
-        id="account_invoices_without_payment"
-        model="account.move"
-        string="Invoices without Payment"
-        report_type="qweb-pdf"
-        name="account.report_invoice"
-        file="account.report_invoice"
-        attachment="(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')"
-        print_report_name="(object._get_report_base_filename())"
-        menu="False"
-    /> -->
+            paperformat="slution.slution_paperformat_invoice"/>
 </odoo>

@@ -23,14 +23,13 @@
                             <p>ลูกค้า</p>
                         </div>
                         <div class="col-9">
-                            <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address","name"], "no_marker": True}' />
-                            <!-- <span t-field="o.partner_id.name"/><br/>
+                            <span t-field="o.partner_id.name"/><br/>
                             <span t-field="o.partner_id.street"/>
                             <span t-field="o.partner_id.street2"/>
                             <span t-field="o.partner_id.city"/>
                             <span t-field="o.partner_id.state_id.name"/>
                             <span t-field="o.partner_id.country_id.name"/>
-                            <span t-field="o.partner_id.zip"/> -->
+                            <span t-field="o.partner_id.zip"/>
                         </div>
                     </div>
                 </div>
