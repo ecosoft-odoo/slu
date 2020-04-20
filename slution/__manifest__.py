@@ -9,7 +9,7 @@
     "author": "Ecosoft Co., Ltd",
     "license": "AGPL-3",
     "website": "https://ecosoft.co.th",
-    "depends": ["hr", "sale", "account"],
+    "depends": ["hr", "purchase", "sale_stock"],
     "data": [
         "account_invoice_form/data/paper_format.xml",
         "account_invoice_form/data/report_data.xml",
