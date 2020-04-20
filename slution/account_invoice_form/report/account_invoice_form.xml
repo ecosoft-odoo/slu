@@ -4,16 +4,11 @@
         <div class="header">
             <div class="row">
                 <div class="col-8">
-                    <h2><span t-field="o.company_id.name"/></h2>
+                    <h2 t-field="o.company_id.name"/>
                 </div>
                 <div class="col-4 text-center">
                     <h3>ใบยืมของชั่วคราว</h3>
-                    <t t-if="i == 0">
-                        <h5>ORIGINAL</h5>
-                    </t>
-                    <t t-else="">
-                        <h5>COPY</h5>
-                    </t>
+                    <h5 t-esc="i == 0 and 'ORIGINAL' or 'COPY'"/>
                 </div>
             </div>
             <div class="row mt16">
@@ -64,7 +59,6 @@
         <div class="article">
             <t t-set="datas" t-value="o._get_datas()"/>
             <t t-set="n" t-value="1"/>
-            <t t-set="total_amount" t-value="0"/>
             <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
                 <thead>
                     <tr>
@@ -99,7 +93,6 @@
                         </td>
                         <td class="text-right">
                             <span t-esc="'{0:,.2f}'.format(line['price_subtotal'])"/>
-                            <t t-set="total_amount" t-value="total_amount+line['price_subtotal']"/>
                         </td>
                     </tr>
                 </tbody>
@@ -190,7 +183,8 @@
                 </div>
             </div>
             <div class="row mt16">
-                <div class="col-1"/>
+                <div class="col-1">
+                </div>
                 <div class="col-5">
                     <div class="row">
                         <div class="col-4 text-center">
