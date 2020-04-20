@@ -15,9 +15,9 @@ class AccountMove(models.Model):
 
         datas = {
             "amount_subtotal": 0.00,
-            "discount": False,
+            "discount": 0.00,
             "deposit": 0.00,
-            "amount_tax": self.amount_tax if self.amount_tax > 0.00 else False,
+            "amount_tax": self.amount_tax,
             "amount_total": self.amount_total,
         }
         # get invoice lines
@@ -36,16 +36,15 @@ class AccountMove(models.Model):
                 datas["amount_subtotal"] += invoice_line['price_subtotal']
         datas["invoice_lines"] = invoice_lines
 
-        if datas["deposit"] > 0.00:
+        if datas["deposit"]:
             datas["amount_after_deposit"] = self.amount_untaxed
             discount = datas["amount_subtotal"] - datas["deposit"] - self.amount_untaxed
-            if discount > 0.00:
+            if discount:
                 datas["discount"] = discount
                 datas["amount_after_discount"] = datas["amount_subtotal"] - discount
         else:
-            datas["deposit"] = False
             discount = datas["amount_subtotal"] - self.amount_untaxed
-            if discount > 0.00:
+            if discount:
                 datas["discount"] = discount
                 datas["amount_after_discount"] = self.amount_untaxed
         return datas
