@@ -55,7 +55,7 @@ class AccountMoveLine(models.Model):
 
     def _prepare_invoice_lines(self):
         return {
-            "product": self.product_id.display_name,
+            "product": self.name,
             "quantity": self.quantity,
             "product_uom": self.product_uom_id.name,
             "price_unit": self.price_unit,
