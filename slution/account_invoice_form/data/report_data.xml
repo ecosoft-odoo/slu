@@ -1,6 +1,6 @@
 <odoo>
     <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
-    <report string="ใบยืมของชั่วคราว"
+    <report string="ใบส่งของ"
             id="account_invoice_form_pdf_report"
             model="account.move"
             name="slution.slution_invoice_form_pdf"

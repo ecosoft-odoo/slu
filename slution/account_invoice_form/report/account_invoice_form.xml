@@ -3,12 +3,12 @@
     <template id="slution_invoice_form">
         <div class="header">
             <div class="row">
-                <div class="col-8">
-                    <h2 t-field="o.company_id.name"/>
+                <div class="col-7">
+                    <t t-set="company" t-value="o.company_id"/>
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 60px;" alt="Logo"/>
                 </div>
-                <div class="col-4 text-center">
-                    <h3>ใบยืมของชั่วคราว</h3>
-                    <h5 t-esc="i == 0 and 'ORIGINAL' or 'COPY'"/>
+                <div class="col-5 text-right">
+                    <h3>ใบส่งของ(<span t-if="i == 0" t-esc="'ต้นฉบับ'"/><span t-if="i == 1" t-esc="'สำเนา'"/><span t-if="i == 2" t-esc="'สำหรับบริษัท'"/><span t-if="i == 3" t-esc="'สำหรับบัญชี'"/>)</h3>
                 </div>
             </div>
             <div class="row mt16">
@@ -52,25 +52,25 @@
                     <p>Remark</p>
                 </div>
                 <div class="col-10">
-                    <span t-field="o.narration"/>
+                    <span t-field="o.ref"/>
                 </div>
             </div>
         </div>
         <div class="article">
             <t t-set="datas" t-value="o._get_datas()"/>
             <t t-set="n" t-value="1"/>
-            <table class="table table-sm table-bordered mt8" style="border: 1px solid black;">
+            <table class="table table-sm table-bordered table-condensed mt8" style="border: 1px solid black;">
                 <thead>
                     <tr>
-                        <th class="text-center">No</th>
-                        <th class="text-center">รหัสสินค้า/รายละเอียด</th>
-                        <th class="text-center">จำนวน</th>
-                        <th class="text-center">หน่วยละ</th>
-                        <th class="text-center">จำนวนเงิน</th>
+                        <th class="text-center" style="width: 5%;">No</th>
+                        <th class="text-center" style="width: 50%;">รหัสสินค้า/รายละเอียด</th>
+                        <th class="text-center" style="width: 15%;">จำนวน</th>
+                        <th class="text-center" style="width: 15%;">หน่วยละ</th>
+                        <th class="text-center" style="width: 15%;">จำนวนเงิน</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr t-foreach="datas['invoice_lines']" t-as="line">
+                    <tr t-foreach="datas['invoice_lines']" t-as="line" style="page-break-inside: avoid !important;">
                         <td class="text-center">
                             <span t-esc="n"/>
                             <t t-set="n" t-value="n+1"/>
@@ -78,14 +78,23 @@
                         <td>
                             <span t-esc="line['product']"/>
                             <t t-if="line['lots']">
-                                <br/>Serial:
-                                <t t-foreach="line['lots']" t-as="lot">
-                                    <br/>&#160;&#160;&#160;&#160;&#160;&#160;<span t-esc="lot"/>
-                                </t>
+                                <div>Serial:</div>
+                                <table class="table table-sm table-bordered table-condensed mt8" style="border: 0px;margin-top: -30px !important;margin-bottom: 0px;">
+                                    <thead>
+                                        <tr>
+                                            <th style="height: 20px;border: 0px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="line['lots']" t-as="lot">
+                                            <td style="border: 0px;padding-left:20px;"><span t-esc="lot"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </t>
                         </td>
                         <td class="text-center">
-                            <span t-esc="line['quantity']"/>
+                            <span t-esc="line['quantity'] - int(line['quantity']) == 0.0 and int(line['quantity']) or line['quantity']"/>
                             <span t-esc="line['product_uom']"/>
                         </td>
                         <td class="text-right">
@@ -227,7 +236,7 @@
     <template id="slution_invoice_form_pdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-set="ncopies" t-value="3"/>
+                <t t-set="ncopies" t-value="4"/>
                 <t t-foreach="range(ncopies)" t-as="i">
                     <t t-call="slution.slution_invoice_form"/>
                 </t>
