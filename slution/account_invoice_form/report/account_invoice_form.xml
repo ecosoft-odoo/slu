@@ -86,7 +86,7 @@
                             <span t-esc="line['description']" t-options="{'widget': 'text'}"/>
                             <t t-if="line['lots']">
                                 <div>Serial:</div>
-                                <table class="table table-sm table-bordered table-condensed mt8" style="border: 0px;margin-top: -30px !important;margin-bottom: 0px;">
+                                <table class="table table-sm table-bordered table-condensed mt8" style="border: 0px;margin-top: -30px !important;">
                                     <thead>
                                         <tr>
                                             <th style="height: 20px;border: 0px;"></th>

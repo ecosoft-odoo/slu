@@ -24,7 +24,7 @@ class AccountMove(models.Model):
         invoice_lines = []
         for line in self.invoice_line_ids:
             if line.product_id.id == int(deposit_product_id):
-                datas["deposit"] += abs(line.price_subtotal)
+                datas["deposit"] += line.price_subtotal
             else:
                 invoice_line = line._prepare_invoice_lines()
                 lots = stock_move_lines.filtered(
@@ -38,12 +38,12 @@ class AccountMove(models.Model):
 
         if datas["deposit"]:
             datas["amount_after_deposit"] = self.amount_untaxed
-            discount = datas["amount_subtotal"] - datas["deposit"] - self.amount_untaxed
+            discount = self.amount_untaxed - datas['deposit'] - datas['amount_subtotal']
             if discount:
                 datas["discount"] = discount
-                datas["amount_after_discount"] = datas["amount_subtotal"] - discount
+                datas["amount_after_discount"] = datas["amount_subtotal"] + discount
         else:
-            discount = datas["amount_subtotal"] - self.amount_untaxed
+            discount = self.amount_untaxed - datas["amount_subtotal"]
             if discount:
                 datas["discount"] = discount
                 datas["amount_after_discount"] = self.amount_untaxed
