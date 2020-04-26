@@ -9,6 +9,8 @@
                     <group>
                         <field name="salesperson_id" required="True" options="{'no_create': True}"/>
                         <field name="partner_id" options="{'no_create': True}"/>
+                        <field name="operating_unit_ids" options="{'no_create': True}" widget="many2many_tags"/>
+                        <field name="company_id" required="True" options="{'no_create': True}" groups="base.group_multi_company"/>
                     </group>
                     <group>
                         <field name="date_from"/>

@@ -14,6 +14,12 @@ class SLUBillingReport(models.Model):
     partner_id = fields.Many2one(
         comodel_name="res.partner",
     )
+    operating_unit_id = fields.Many2one(
+        comodel_name="operating.unit",
+    )
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+    )
     invoice_date = fields.Date()
     name = fields.Char()
     amount_total = fields.Float()
@@ -22,8 +28,9 @@ class SLUBillingReport(models.Model):
 
     def _get_sql(self):
         sql = """
-            SELECT ROW_NUMBER() over(ORDER BY am.id, ap.id) as id,
-                   am.salesperson_id, am.partner_id, am.invoice_date, am.name,
+            SELECT ROW_NUMBER() OVER(ORDER BY am.id, ap.id) AS id,
+                   am.salesperson_id, am.partner_id, am.operating_unit_id,
+                   am.company_id, am.invoice_date, am.name,
                    (CASE WHEN am.type = 'out_invoice' THEN 1 ELSE -1 END) *
                    (CASE WHEN am.is_installment = False THEN am.amount_total
                    ELSE ap.amount END) AS amount_total,

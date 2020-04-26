@@ -9,7 +9,12 @@
     "author": "Ecosoft Co., Ltd",
     "license": "AGPL-3",
     "website": "https://ecosoft.co.th",
-    "depends": ["hr", "purchase", "sale_stock"],
+    "depends": [
+        "hr",
+        "purchase",
+        "sale_stock",
+        "account_operating_unit",
+    ],
     "data": [
         "account_invoice_form/data/paper_format.xml",
         "account_invoice_form/data/report_data.xml",
@@ -25,9 +30,11 @@
         "billing_report/data/paper_format.xml",
         "billing_report/data/report_data.xml",
         "billing_report/security/ir.model.access.csv",
+        "billing_report/security/billing_report_security.xml",
         "billing_report/report/slu_billing_report.xml",
         "billing_report/wizards/billing_report_wizard.xml",
         "billing_report/views/account_move_views.xml",
-        "billing_report/views/account_payment_views.xml"],
+        "billing_report/views/account_payment_views.xml",
+    ],
     "installable": True,
 }

@@ -8,6 +8,11 @@ from odoo.tools.safe_eval import safe_eval
 class BillingReportWizard(models.TransientModel):
     _name = "billing.report.wizard"
 
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+    )
     salesperson_id = fields.Many2one(
         comodel_name="hr.employee",
         domain=lambda self: self._get_domain_salesperson_id(),
@@ -15,6 +20,10 @@ class BillingReportWizard(models.TransientModel):
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Partner",
+    )
+    operating_unit_ids = fields.Many2many(
+        comodel_name="operating.unit",
+        domain="[('user_ids', '=', uid)]",
     )
     date_from = fields.Date()
     date_to = fields.Date()
@@ -32,9 +41,12 @@ class BillingReportWizard(models.TransientModel):
 
     def _compute_report_ids(self):
         self.ensure_one()
-        dom = [("salesperson_id", "=", self.salesperson_id.id)]
+        dom = [("salesperson_id", "=", self.salesperson_id.id),
+               ("company_id", "=", self.company_id.id)]
         if self.partner_id:
             dom += [("partner_id", "=", self.partner_id.id)]
+        if self.operating_unit_ids:
+            dom += [("operating_unit_id", "in", self.operating_unit_ids.ids)]
         if self.date_from:
             dom += [("invoice_date_due", ">=", self.date_from)]
         if self.date_to:

@@ -14,4 +14,30 @@
             </field>
         </field>
     </record>
+
+    <record id="view_account_payment_tree_ext" model="ir.ui.view">
+        <field name="name">account.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="installment_invoice_id"/>
+                <field name="communication"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_supplier_payment_tree_ext" model="ir.ui.view">
+        <field name="name">account.supplier.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="installment_invoice_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="communication" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
 </odoo>
