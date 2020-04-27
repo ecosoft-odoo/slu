@@ -23,6 +23,5 @@ class AccountPayment(models.Model):
     def _compute_check_deposit_id(self):
         for rec in self:
             check_deposit = rec.move_line_ids.mapped("check_deposit_id")
-            assert len(check_deposit) > 1
             if check_deposit.state == "done":
                 rec.check_deposit_id = check_deposit
