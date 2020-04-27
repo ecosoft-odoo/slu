@@ -1,0 +1,45 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="view_account_payment_form_ext2" model="ir.ui.view">
+        <field name="name">account.payment.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <field name="communication" position="after">
+                <field name="number_check" attrs="{'invisible': [('partner_type', '!=', 'customer')]}"/>
+                <field name="date_check" attrs="{'invisible': [('partner_type', '!=', 'customer')]}"/>
+                <field name="check_deposit_id" invisible="context.get('active_model') == 'account.move'" attrs="{'invisible': [('partner_type', '!=', 'customer')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_tree_ext2" model="ir.ui.view">
+        <field name="name">account.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="number_check"/>
+                <field name="date_check"/>
+                <field name="check_deposit_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_supplier_payment_tree_ext2" model="ir.ui.view">
+        <field name="name">account.supplier.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="arch" type="xml">
+            <field name="number_check" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="date_check" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="check_deposit_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>    
+</odoo>

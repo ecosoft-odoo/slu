@@ -35,6 +35,7 @@
         "billing_report/wizards/billing_report_wizard.xml",
         "billing_report/views/account_move_views.xml",
         "billing_report/views/account_payment_views.xml",
+        "account_check_deposit_ext/views/account_payment_views.xml",
     ],
     "installable": True,
 }
