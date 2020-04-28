@@ -11,4 +11,5 @@ class AccountCheckDeposit(models.Model):
         comodel_name="operating.unit",
         related="journal_id.operating_unit_id",
         store=True,
+        index=True,
     )
