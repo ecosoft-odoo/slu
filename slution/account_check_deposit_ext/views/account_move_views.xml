@@ -1,0 +1,14 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="view_move_line_tree_grouped_ext2" model="ir.ui.view">
+        <field name="name">account.move.line.tree</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree_grouped"/>
+        <field name="arch" type="xml">
+            <field name="move_id" position="after">
+                <field name="number_check" invisible="not context.get('check_deposit', False)"/>
+                <field name="date_check" invisible="not context.get('check_deposit', False)"/>
+            </field>
+        </field>
+    </record>
+</odoo>

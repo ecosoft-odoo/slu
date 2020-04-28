@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="account_check_deposit_view_form" model="ir.ui.view">
+        <field name="name">account.check.deposit.view.form</field>
+        <field name="model">account.check.deposit</field>
+        <field name="inherit_id" ref="account_check_deposit.account_check_deposit_view_form"/>
+        <field name="arch" type="xml">
+            <field name="check_payment_ids" position="attributes">
+                <attribute name="context">{'currency': currency_id, 'journal_id': journal_id, 'check_deposit': 1}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

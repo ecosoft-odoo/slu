@@ -14,6 +14,7 @@
         "purchase",
         "sale_stock",
         "account_operating_unit",
+        "account_check_deposit",
     ],
     "data": [
         "account_invoice_form/data/paper_format.xml",
@@ -36,6 +37,8 @@
         "billing_report/views/account_move_views.xml",
         "billing_report/views/account_payment_views.xml",
         "account_check_deposit_ext/views/account_payment_views.xml",
+        "account_check_deposit_ext/views/account_move_views.xml",
+        "account_check_deposit_ext/views/account_deposit_views.xml",
     ],
     "installable": True,
 }
