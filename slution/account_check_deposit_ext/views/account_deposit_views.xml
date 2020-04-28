@@ -8,6 +8,10 @@
             <field name="check_payment_ids" position="attributes">
                 <attribute name="context">{'currency': currency_id, 'journal_id': journal_id, 'check_deposit': 1}</attribute>
             </field>
+            <xpath expr="//field[@name='check_payment_ids']/tree/field[@name='move_id']" position="after">
+                <field name="number_check"/>
+                <field name="date_check"/>
+            </xpath>
         </field>
     </record>
 </odoo>
