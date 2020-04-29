@@ -18,6 +18,7 @@ $psql -c "delete from stock_inventory"
 $psql -c "delete from stock_scrap"
 $psql -c "delete from stock_quant"
 $psql -c "delete from stock_valuation_layer"
+$psql -c "delete from stock_production_lot"
 
 # Accounting
 $psql -c "delete from account_partial_reconcile";
