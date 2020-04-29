@@ -65,6 +65,18 @@ class SaleOrder(models.Model):
     def _prepare_invoice(self):
         self.ensure_one()
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
+        Journal = self.env["account.journal"]
+        journal = Journal.browse(invoice_vals.get("journal_id"))
+        if self.operating_unit_id and journal.operating_unit_id != self.operating_unit_id:
+            journal = Journal.search([("type", "=", journal.type)])
+            jf = journal.filtered(
+                lambda aj: aj.operating_unit_id == self.operating_unit_id
+            )
+            if not jf:
+                journal_id = journal[0].id
+            else:
+                journal_id = jf[0].id
+            invoice_vals["journal_id"] = journal_id
         invoice_vals["operating_unit_id"] = self.operating_unit_id.id
         return invoice_vals
 
