@@ -62,26 +62,27 @@ class SaleOrder(models.Model):
                     )
                 )
 
-    def _prepare_invoice(self):
-        self.ensure_one()
-        invoice_vals = super(SaleOrder, self)._prepare_invoice()
-        journal_id = invoice_vals.get("journal_id")
-        if not journal_id:
-            journal = self.env["account.move"].with_context(default_type="out_invoice")._get_default_journal()
-        else:
-            journal = self.env["account.journal"].browse(journal_id)
-        if self.operating_unit_id and journal.operating_unit_id != self.operating_unit_id:
-            journal = self.env["account.journal"].search([("type", "=", journal.type)])
-            jf = journal.filtered(
-                lambda aj: aj.operating_unit_id == self.operating_unit_id
-            )
-            if not jf:
-                journal_id = journal[0].id
-            else:
-                journal_id = jf[0].id
-            invoice_vals["journal_id"] = journal_id
-        invoice_vals["operating_unit_id"] = self.operating_unit_id.id
-        return invoice_vals
+    def _create_invoices(self, grouped=False, final=False):
+        ctx = self._context.copy()
+        ctx["no_check_journal_ou"] = True
+        moves = super(SaleOrder, self.with_context(ctx))._create_invoices(grouped=grouped, final=final)
+        for move in moves:
+            move_ctx = move._context.copy()
+            move_ctx["no_check_journal_ou"] = False
+            move = move.with_context(move_ctx)
+            move_vals = {"operating_unit_id": self.operating_unit_id}
+            if self.operating_unit_id and move.journal_id.operating_unit_id != self.operating_unit_id:
+                journal = self.env["account.journal"].search([("type", "=", move.journal_id.type)])
+                jf = journal.filtered(
+                    lambda aj: aj.operating_unit_id == self.operating_unit_id
+                )
+                if not jf:
+                    journal_id = journal[0].id
+                else:
+                    journal_id = jf[0].id
+                move_vals["journal_id"] = journal_id
+            move.write(move_vals)
+        return moves
 
 
 class SaleOrderLine(models.Model):
