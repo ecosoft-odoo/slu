@@ -71,6 +71,7 @@ class SaleOrder(models.Model):
             move_ctx["no_check_journal_ou"] = False
             move = move.with_context(move_ctx)
             move_vals = {"operating_unit_id": self.operating_unit_id}
+            move_line_vals = move_vals
             if self.operating_unit_id and move.journal_id.operating_unit_id != self.operating_unit_id:
                 journal = self.env["account.journal"].search([("type", "=", move.journal_id.type)])
                 jf = journal.filtered(
@@ -82,6 +83,7 @@ class SaleOrder(models.Model):
                     journal_id = jf[0].id
                 move_vals["journal_id"] = journal_id
             move.write(move_vals)
+            move.line_ids.write(move_line_vals)
         return moves
 
 
