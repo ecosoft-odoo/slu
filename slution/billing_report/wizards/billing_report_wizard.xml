@@ -38,6 +38,6 @@
 
     <menuitem id="billing_report_wizard_menu"
               action="billing_report_wizard_action"
-              parent="account.menu_finance_reports"
-              sequence="10"/>
+              parent="account.menu_finance_receivables"
+              sequence="200"/>
 </odoo>
