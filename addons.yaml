@@ -1,0 +1,16 @@
+stock-logistics-workflow:
+    - stock_picking_filter_lot
+account-financial-tools:
+    - account_check_deposit
+operating-unit:
+    - operating_unit
+    - analytic_operating_unit
+    - sales_team_operating_unit
+    - stock_operating_unit
+    - account_operating_unit
+    - sale_operating_unit
+    - sale_stock_operating_unit
+    - stock_account_operating_unit
+    - account_check_deposit_operating_unit
+    - account_operating_unit_sequence
+    - sale_operating_unit_sequence

@@ -1,0 +1,26 @@
+./stock-logistics-workflow:
+    remotes:
+        oca: https://github.com/OCA/stock-logistics-workflow.git
+        ecosoft: https://github.com/ecosoft-odoo/stock-logistics-workflow.git
+    merges:
+        - oca refs/pull/648/head # stock_picking_filter_lot
+    target: ecosoft 13.0
+./account-financial-tools:
+    remotes:
+        oca: https://github.com/OCA/account-financial-tools.git
+        ecosoft: https://github.com/ecosoft-odoo/account-financial-tools.git
+    merges:
+        - oca 13.0
+    target: ecosoft 13.0
+./operating-unit:
+    remotes:
+        oca: https://github.com/OCA/operating-unit.git
+        ecosoft: https://github.com/ecosoft-odoo/operating-unit.git
+    merges:
+        - oca 13.0
+        - oca refs/pull/278/head # account_check_deposit_operating_unit
+        - oca refs/pull/276/head # account_operating_unit_sequence
+        - oca refs/pull/275/head # sale_operating_unit_sequence
+        - oca refs/pull/253/head # sale_stock_operating_unit
+        - oca refs/pull/254/head # stock_account_operating_unit
+    target: ecosoft 13.0
