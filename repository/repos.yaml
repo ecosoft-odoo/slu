@@ -23,4 +23,5 @@
         - oca refs/pull/275/head # sale_operating_unit_sequence
         - oca refs/pull/253/head # sale_stock_operating_unit
         - oca refs/pull/254/head # stock_account_operating_unit
+        - oca refs/pull/283/head # account_operating_unit
     target: ecosoft 13.0
