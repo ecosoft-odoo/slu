@@ -40,6 +40,8 @@
         "account_check_deposit_ext/views/account_move_views.xml",
         "account_check_deposit_ext/views/account_deposit_views.xml",
         "account_ext/views/account_move_views.xml",
+        "stock_ext/views/stock_quant_views.xml",
+        "stock_ext/views/product_views.xml",
     ],
     "installable": True,
 }
