@@ -46,6 +46,9 @@
         "sale_form/data/paperformat_data.xml",
         "sale_form/data/report_data.xml",
         "sale_form/report/quotation_form.xml",
+        "purchase_form/data/paperformat_data.xml",
+        "purchase_form/data/report_data.xml",
+        "purchase_form/report/purchase_form.xml",
     ],
     "installable": True,
 }

@@ -7,3 +7,4 @@ from . import billing_report
 from . import account_check_deposit_ext
 from . import stock_ext
 from . import sale_form
+from . import purchase_form
