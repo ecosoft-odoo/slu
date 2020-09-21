@@ -1,0 +1,349 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <template id="slution_header_purchase_order_form">
+        <t t-set="word_dict" t-value="o.get_words()['header']"/>
+        <div class="header">
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-10" style="padding: 0px;">
+                    <div class="row">
+                        <div class="col-3">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width: inherit;"/>
+                        </div>
+                        <div class="col-9" style="font-size: 14px !important;">
+                            <strong t-esc="word_dict['company_name'][lang]" style="font-size: 20px !important;"/><br/>
+                            <strong t-esc="word_dict['company_address'][lang]"/><br/>
+                            <strong t-esc="'%s %s' % (word_dict['company_phone'][lang], word_dict['company_fax'][lang])"/><br/>
+                            <strong t-esc="'%s %s' % (word_dict['company_email'][lang], word_dict['company_website'][lang])"/><br/>
+                            <strong t-esc="word_dict['company_tax_id'][lang]"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2" style="padding: 0px;">
+                    <h5 class="text-center" style="border: 1px solid; padding: 10px;">
+                        <t t-esc="word_dict['title'][lang]"/>
+                    </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong t-esc="word_dict['name'][lang]"/>
+                        </div>
+                        <div class="col-9">
+                            <span t-field="o.partner_id.name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong t-esc="word_dict['date'][lang]"/>
+                        </div>
+                        <div class="col-7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong t-esc="word_dict['company'][lang]"/>
+                        </div>
+                        <div class="col-9">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong t-esc="word_dict['po_no'][lang]"/>
+                        </div>
+                        <div class="col-7">
+                            <span t-field="o.name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div t-att-class="'col-3' if lang == 'en' else 'col-6'">
+                            <strong t-esc="word_dict['tax_id'][lang]"/>
+                        </div>
+                        <div t-att-class="'col-9' if lang == 'en' else 'col-6'">
+                            <span t-field="o.partner_id.vat"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong t-esc="word_dict['payment_term'][lang]"/>
+                        </div>
+                        <div class="col-7">
+                            <span t-field="o.payment_term_id.name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong t-esc="word_dict['address'][lang]"/>
+                        </div>
+                        <div class="col-9">
+                            <span t-field="o.partner_id.street"/>
+                            <span t-field="o.partner_id.street2"/>
+                            <span t-field="o.partner_id.city"/>
+                            <span t-field="o.partner_id.state_id.name"/>
+                            <span t-field="o.partner_id.country_id.name"/>
+                            <span t-field="o.partner_id.zip"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong t-esc="word_dict['ship_via'][lang]"/>
+                        </div>
+                        <div class="col-7">
+                            <span t-field="o.incoterm_id.name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong t-esc="word_dict['email'][lang]"/>
+                        </div>
+                        <div class="col-9">
+                            <span t-field="o.partner_id.email"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5">
+                            <strong t-esc="word_dict['shipping_date'][lang]"/>
+                        </div>
+                        <div class="col-7">
+                            <span t-field="o.date_planned"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col-3">
+                            <strong t-esc="word_dict['phone'][lang]"/>
+                        </div>
+                        <div class="col-4">
+                            <span t-field="o.partner_id.phone"/>
+                        </div>
+                        <div class="col-2">
+                            <strong t-esc="word_dict['fax'][lang]"/>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="slution_article_purchase_order_form">
+        <t t-set="word_dict" t-value="o.get_words()['article']"/>
+        <div class="article">
+            <table class="table table-sm table-borderless mt8">
+                <thead>
+                    <tr class="text-center" style="border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['number'][lang]"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['description'][lang]"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['quantity'][lang]"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="word_dict['currency'][lang]"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-esc="word_dict['currency'][lang]"/></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="number" t-value="0"/>
+                    <t t-set="current_subtotal" t-value="0"/>
+                    <t t-set="subtotal" t-value="0"/>
+                    <t t-set="is_include_tax" t-value="any(o.order_line.mapped('taxes_id').mapped('price_include'))"/>
+                    <t t-foreach="o.order_line" t-as="line">
+                        <t t-set="amount" t-value="line.product_qty * line.price_unit"/>
+                        <t t-set="current_subtotal" t-value="current_subtotal + amount"/>
+                        <t t-set="subtotal" t-value="subtotal + amount"/>
+                        <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''" style="border-bottom: 1px solid lightgray;">
+                            <t t-if="not line.display_type">
+                                <td class="text-right" style="padding: 5px;">
+                                    <t t-set="number" t-value="number + 1"/>
+                                    <span t-esc="number"/>
+                                </td>
+                                <td style="padding: 5px;">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td class="text-right" style="padding: 5px;">
+                                    <span t-esc="'{0:,.3f}'.format(line.product_qty)"/>
+                                </td>
+                                <td class="text-right" style="padding: 5px;">
+                                    <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
+                                </td>
+                                <td class="text-right" style="padding: 5px;">
+                                    <span t-esc="'{0:,.2f}'.format(amount)"/>
+                                </td>
+                            </t>
+                            <t t-if="line.display_type == 'line_section'">
+                                <td name="td_section_line" colspan="99">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <t t-set="number" t-value="0"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="current_section" t-value="line"/>
+                            </t>
+                            <t t-if="line.display_type == 'line_note'">
+                                <td name="td_note_line" colspan="99">
+                                    <span t-field="line.name"/>
+                                </td>
+                            </t>
+                        </tr>
+                        <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                            <tr class="is-subtotal text-right">
+                                <td name="td_section_subtotal" colspan="99">
+                                    <strong class="mr16">Subtotal</strong>
+                                    <span t-esc="'{0:,.2f}'.format(current_subtotal)"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-sm table-borderless">
+                            <tr>
+                                <td rowspan="4" style="width: 55%;">
+                                    <strong t-esc="word_dict['remark'][lang]" style="text-decoration: underline;"/><br/>
+                                    <span t-field="o.notes"/>
+                                </td>
+                                <td class="text-right" style="width: 25%;">
+                                    <strong t-esc="word_dict['subtotal'][lang]"/>
+                                </td>
+                                <td class="text-right" style="width: 20%;">
+                                    <span t-esc="'{0:,.2f}'.format(subtotal)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong t-esc="word_dict['discount'][lang]"/>
+                                </td>
+                                <td class="text-right" style="border-bottom:1px solid black;">
+                                    <t t-set="amount_discount" t-value="subtotal - (o.amount_total - o.amount_tax)"/>
+                                    <t t-if="is_include_tax">
+                                        <t t-set="amount_discount" t-value="subtotal - o.amount_total"/>
+                                    </t>
+                                    <span t-esc="'{0:,.2f}'.format(amount_discount)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong t-esc="word_dict['after_discount'][lang]"/>
+                                </td>
+                                <td class="text-right">
+                                    <t t-set="amount_after_discount" t-value="o.amount_total - o.amount_tax"/>
+                                    <t t-if="is_include_tax">
+                                        <t t-set="amount_after_discount" t-value="o.amount_total"/>
+                                    </t>
+                                    <span t-esc="'{0:,.2f}'.format(amount_after_discount)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <strong t-esc="word_dict['vat'][lang]"/>
+                                </td>
+                                <td class="text-right" style="border-bottom:1px solid black;">
+                                    <span t-esc="'{0:,.2f}'.format(o.amount_tax)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <t t-set="currency" t-value="o.currency_id"/>
+                                    <t t-if="lang == 'th'">
+                                        <t t-set="currency" t-value="o.currency_id.with_context({'lang': 'th_TH'})"/>
+                                    </t>
+                                    <strong t-esc="currency.amount_to_text(o.amount_total)"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong t-esc="word_dict['grand_total'][lang]"/>
+                                </td>
+                                <td class="text-right" style="border-bottom: double;">
+                                    <span t-esc="'{0:,.2f}'.format(o.amount_total)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="slution_footer_purchase_order_form">
+        <t t-set="word_dict" t-value="o.get_words()['footer']"/>
+        <div class="footer">
+            <div class="row">
+                <div class="col-4" style="border: 1px solid;border-right: 0px;">
+                    <br/><br/><br/><br/><br/>__________________________________________
+                    <div class="text-center" t-esc="word_dict['requested_by'][lang]"/>
+                    <div class="text-center">
+                        <span t-esc="word_dict['date'][lang]"/>______/______/______
+                    </div>
+                </div>
+                <div class="col-4" style="border: 1px solid;">
+                    <br/><br/><br/><br/><br/>__________________________________________
+                    <div class="text-center" t-esc="word_dict['prepared_by'][lang]"/>
+                    <div class="text-center">
+                        <span t-esc="word_dict['date'][lang]"/>______/______/______
+                    </div>
+                </div>
+                <div class="col-4" style="border: 1px solid;border-left: 0px;">
+                    <br/><br/><br/><br/><br/>__________________________________________
+                    <div class="text-center" t-esc="word_dict['authorized_signature'][lang]"/>
+                    <div class="text-center">
+                        <span t-esc="word_dict['date'][lang]"/>______/______/______
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="slution_purchase_order_form">
+        <t t-call="slution.slution_header_purchase_order_form"/>
+        <t t-call="slution.slution_article_purchase_order_form"/>
+        <t t-call="slution.slution_footer_purchase_order_form"/>
+    </template>
+
+    <template id="slution_purchase_order_en_form_pdf">
+        <t t-call="web.html_container">
+            <t t-set="lang" t-value="'en'"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="slution.slution_purchase_order_form"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="slution_purchase_order_th_form_pdf">
+        <t t-call="web.html_container">
+            <t t-set="lang" t-value="'th'"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="slution.slution_purchase_order_form"/>
+            </t>
+        </t>
+    </template>
+</odoo>
