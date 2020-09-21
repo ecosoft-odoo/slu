@@ -15,6 +15,7 @@
         "sale_stock",
         "account_operating_unit",
         "account_check_deposit",
+        "l10n_th_amount_to_text",
     ],
     "data": [
         "account_invoice_form/data/paper_format.xml",
@@ -42,6 +43,9 @@
         "account_ext/views/account_move_views.xml",
         "stock_ext/views/stock_quant_views.xml",
         "stock_ext/views/product_views.xml",
+        "sale_form/data/paperformat_data.xml",
+        "sale_form/data/report_data.xml",
+        "sale_form/report/quotation_form.xml",
     ],
     "installable": True,
 }
