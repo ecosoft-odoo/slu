@@ -106,10 +106,10 @@
                 </div>
                 <div class="col-5">
                     <div class="row">
-                        <div t-att-class="'col-5' if lang == 'en' else 'col-6'">
+                        <div class="col-5">
                             <strong t-esc="word_dict['payment_term'][lang]"/>
                         </div>
-                        <div t-att-class="'col-7' if lang == 'en' else 'col-6'">
+                        <div class="col-7">
                             <span t-field="o.payment_term_id.name"/>
                         </div>
                     </div>
@@ -221,11 +221,11 @@
                     <div class="col-12">
                         <table class="table table-sm table-borderless">
                             <tr>
-                                <td rowspan="4" style="width: 60%;">
-                                    <strong t-esc="word_dict['term_and_condition'][lang]"/><br/>
+                                <td rowspan="4" style="width: 55%;">
+                                    <strong t-esc="word_dict['term_and_condition'][lang]" style="text-decoration: underline;"/><br/>
                                     <span t-field="o.note"/>
                                 </td>
-                                <td class="text-right" style="width: 20%;">
+                                <td class="text-right" style="width: 25%;">
                                     <strong t-esc="word_dict['subtotal'][lang]"/>
                                 </td>
                                 <td class="text-right" style="width: 20%;">

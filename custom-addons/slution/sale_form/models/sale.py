@@ -87,7 +87,7 @@ class SaleOrder(models.Model):
                 },
                 "payment_term": {
                     "en": "Payment Term:",
-                    "th": "เงื่อนไขการชำระ:",
+                    "th": "เงื่อนไขชำระเงิน:",
                 },
                 "description": {
                     "en": "Thank you for your inquiry. We have the pleasure "
