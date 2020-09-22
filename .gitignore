@@ -58,5 +58,5 @@ docs/_build/
 # OSX Files
 *.DS_Store
 
-auto-addons/
+#auto-addons/
 repository/
