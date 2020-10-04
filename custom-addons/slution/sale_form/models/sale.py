@@ -118,10 +118,6 @@ class SaleOrder(models.Model):
                     "en": "Amount",
                     "th": "จำนวนเงิน",
                 },
-                "currency": {
-                    "en": "Baht",
-                    "th": "บาท",
-                },
                 "term_and_condition": {
                     "en": "Term & Condition:",
                     "th": "เงื่อนไข:",

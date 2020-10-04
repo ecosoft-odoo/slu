@@ -115,10 +115,6 @@ class PurchaseOrder(models.Model):
                     "en": "Amount",
                     "th": "จำนวนเงิน",
                 },
-                "currency": {
-                    "en": "Baht",
-                    "th": "บาท",
-                },
                 "remark": {
                     "en": "Remark:",
                     "th": "หมายเหตุ:",

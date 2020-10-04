@@ -31,7 +31,7 @@
                             <strong t-esc="word_dict['name'][lang]"/>
                         </div>
                         <div class="col-9">
-                            <span t-field="o.partner_id.name"/>
+                            <span t-field="o.client_order_ref"/>
                         </div>
                     </div>
                 </div>
@@ -52,6 +52,7 @@
                             <strong t-esc="word_dict['company'][lang]"/>
                         </div>
                         <div class="col-9">
+                            <span t-field="o.partner_id.name"/>
                         </div>
                     </div>
                 </div>
@@ -159,8 +160,8 @@
                         <th style="vertical-align: middle;"><span t-esc="word_dict['number'][lang]"/></th>
                         <th style="vertical-align: middle;"><span t-esc="word_dict['description'][lang]"/></th>
                         <th style="vertical-align: middle;"><span t-esc="word_dict['quantity'][lang]"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="word_dict['currency'][lang]"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-esc="word_dict['currency'][lang]"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="o.currency_id.currency_unit_label"/></th>
+                        <th style="vertical-align: middle;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-esc="o.currency_id.currency_unit_label"/></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -188,7 +189,7 @@
                                     <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
                                 </td>
                                 <td class="text-right" style="padding: 5px;">
-                                    <span t-esc="'{0:,.2f}'.format(amount)"/>
+                                    <span t-esc="amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </t>
                             <t t-if="line.display_type == 'line_section'">
@@ -209,7 +210,7 @@
                             <tr class="is-subtotal text-right">
                                 <td name="td_section_subtotal" colspan="99">
                                     <strong class="mr16">Subtotal</strong>
-                                    <span t-esc="'{0:,.2f}'.format(current_subtotal)"/>
+                                    <span t-esc="current_subtotal" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                         </t>
@@ -229,7 +230,7 @@
                                     <strong t-esc="word_dict['subtotal'][lang]"/>
                                 </td>
                                 <td class="text-right" style="width: 20%;">
-                                    <span t-esc="'{0:,.2f}'.format(subtotal)"/>
+                                    <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -241,7 +242,7 @@
                                     <t t-if="is_include_tax">
                                         <t t-set="amount_discount" t-value="subtotal - o.amount_total"/>
                                     </t>
-                                    <span t-esc="'{0:,.2f}'.format(amount_discount)"/>
+                                    <span t-esc="amount_discount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -253,7 +254,7 @@
                                     <t t-if="is_include_tax">
                                         <t t-set="amount_after_discount" t-value="o.amount_total"/>
                                     </t>
-                                    <span t-esc="'{0:,.2f}'.format(amount_after_discount)"/>
+                                    <span t-esc="amount_after_discount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -261,7 +262,7 @@
                                     <strong t-esc="word_dict['vat'][lang]"/>
                                 </td>
                                 <td class="text-right" style="border-bottom:1px solid black;">
-                                    <span t-esc="'{0:,.2f}'.format(o.amount_tax)"/>
+                                    <span t-esc="o.amount_tax" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -276,7 +277,7 @@
                                     <strong t-esc="word_dict['grand_total'][lang]"/>
                                 </td>
                                 <td class="text-right" style="border-bottom: double;">
-                                    <span t-esc="'{0:,.2f}'.format(o.amount_total)"/>
+                                    <span t-esc="o.amount_total" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                 </td>
                             </tr>
                         </table>
