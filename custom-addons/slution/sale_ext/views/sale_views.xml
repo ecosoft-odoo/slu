@@ -8,6 +8,12 @@
             <field name="partner_id" position="attributes">
                 <attribute name="context">{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True, 'search_default_customer': True}</attribute>
             </field>
+            <xpath expr="//sheet/group[1]/group[2]/div[1]" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
+            <xpath expr="//sheet/group[1]/group[2]/field[@name='date_order'][1]" position="attributes">
+                <attribute name="groups"></attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

@@ -41,6 +41,7 @@
                             <strong t-esc="word_dict['date'][lang]"/>
                         </div>
                         <div class="col-7">
+                            <span t-field="o.date_order" t-options="{'widget': 'date'}"/>
                         </div>
                     </div>
                 </div>

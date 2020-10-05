@@ -8,38 +8,51 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def get_words(self):
+        self.ensure_one()
         word_dict = {
             "header": {
                 "company_name": {
-                    "en": "C. SAHAMONGKOL ENGINEERING LTD., PART.",
-                    "th": "ห้างหุ้นส่วนจำกัด ช. สหมงคล เอ็นจิเนียริ่ง "
-                          "(สำนักงานใหญ่)",
+                    "en": self.company_id.partner_id.name.upper(),
+                    "th": self.company_id.partner_th,
                 },
                 "company_address": {
-                    "en": "76/92-93 RATCHDAPISEK RD., BANGKOK-YAI, BANGKOK "
-                          "10600 THAILAND",
-                    "th": "76/92-93 ถ.รัชดาภิเษก แขวงวัดท่าพระ เขตบางกอกใหญ่ "
-                          "กรุงเทพฯ 10600",
+                    "en": " ".join(filter(
+                        lambda l: l, [
+                            self.company_id.street,
+                            self.company_id.street2,
+                            self.company_id.city,
+                            self.company_id.state_id.name,
+                            self.company_id.zip,
+                            self.company_id.country_id.name])).upper(),
+                    "th": " ".join(filter(
+                        lambda l: l, [
+                            self.company_id.street_th,
+                            self.company_id.street2_th,
+                            self.company_id.city_th,
+                            self.company_id.state_th,
+                            self.company_id.zip_th,
+                            self.company_id.country_th])),
                 },
                 "company_phone": {
-                    "en": "TEL: +662-457-0066 (AUTO 4579424-25)",
-                    "th": "โทรศัพท์: 02-457-0066 (AUTO 4579424-25)",
+                    "en": "TEL: %s" % (self.company_id.phone, ),
+                    "th": "โทรศัพท์: %s" % (self.company_id.phone, ),
                 },
                 "company_fax": {
-                    "en": "FAX: +662-457-9428",
-                    "th": "แฟกซ์: 02-457-9428",
+                    "en": "FAX: %s" % (self.company_id.partner_id.fax, ),
+                    "th": "แฟกซ์: %s" % (self.company_id.partner_id.fax, ),
                 },
                 "company_email": {
-                    "en": "EMAIL: csm@csm.co.th",
-                    "th": "อีเมล์: csm@csm.co.th",
+                    "en": "EMAIL: %s" % (self.company_id.email, ),
+                    "th": "อีเมล์: %s" % (self.company_id.email, ),
                 },
                 "company_website": {
-                    "en": "WEBSITE: http://www.csmmarine.com",
-                    "th": "เว็บไซต์: http://www.csmmarine.com",
+                    "en": "WEBSITE: %s" % (self.company_id.website, ),
+                    "th": "เว็บไซต์: %s" % (self.company_id.website, ),
                 },
                 "company_tax_id": {
-                    "en": "TAX-ID: 010 353 400 7815",
-                    "th": "หมายเลขประจำตัวผู้เสียภาษี: 010 353 400 7815",
+                    "en": "TAX-ID: %s" % (self.company_id.vat, ),
+                    "th": "หมายเลขประจำตัวผู้เสียภาษี: %s" % (
+                        self.company_id.vat, ),
                 },
                 "title": {
                     "en": "QUOTATION",

@@ -16,6 +16,7 @@
         "account_operating_unit",
         "account_check_deposit",
         "l10n_th_amount_to_text",
+        "partner_fax",
     ],
     "data": [
         "account_invoice_form/data/paper_format.xml",
@@ -49,6 +50,7 @@
         "purchase_form/data/paperformat_data.xml",
         "purchase_form/data/report_data.xml",
         "purchase_form/report/purchase_form.xml",
+        "base_ext/views/res_company_views.xml",
     ],
     "installable": True,
 }

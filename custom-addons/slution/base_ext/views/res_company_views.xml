@@ -1,0 +1,28 @@
+<odoo>
+    <!-- Copyright 2020 Ecosoft Co., Ltd (http://ecosoft.co.th/)-->
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Contact (EN)</attribute>
+            </field>
+            <label for="street" position="attributes">
+                <attribute name="string">Address (EN)</attribute>
+            </label>
+            <field name="phone" position="before">
+                <field name="partner_th" string="Contact (TH)" groups="base.group_no_one"/>
+                <label for="street_th" string="Address (TH)"/>
+                <div class="o_address_format">
+                    <field name="street_th" placeholder="Street..." class="o_address_street"/>
+                    <field name="street2_th" placeholder="Street 2..." class="o_address_street"/>
+                    <field name="city_th" placeholder="City" class="o_address_city"/>
+                    <field name="state_th" class="o_address_state" placeholder="State" options="{'no_open': True}" style="width:33%;"/>
+                    <field name="zip_th" placeholder="ZIP" class="o_address_zip"/>
+                    <field name="country_th" placeholder="Country" class="o_address_country" options="{'no_open': True}"/>
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
