@@ -12,8 +12,8 @@ class SaleOrder(models.Model):
         word_dict = {
             "header": {
                 "company_name": {
-                    "en": self.company_id.partner_id.name.upper(),
-                    "th": self.company_id.partner_th,
+                    "en": self.company_id.name.upper(),
+                    "th": self.company_id.company_registry,
                 },
                 "company_address": {
                     "en": " ".join(filter(
