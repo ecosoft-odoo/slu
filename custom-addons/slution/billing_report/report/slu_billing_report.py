@@ -6,6 +6,7 @@ from odoo import models, fields, tools
 
 class SLUBillingReport(models.Model):
     _name = "slu.billing.report"
+    _description = "SLU Billing Report"
     _auto = False
 
     salesperson_id = fields.Many2one(

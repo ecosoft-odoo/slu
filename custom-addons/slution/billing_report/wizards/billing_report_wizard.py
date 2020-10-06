@@ -7,6 +7,7 @@ from odoo.tools.safe_eval import safe_eval
 
 class BillingReportWizard(models.TransientModel):
     _name = "billing.report.wizard"
+    _description = "Billing Report Wizard"
 
     company_id = fields.Many2one(
         comodel_name="res.company",

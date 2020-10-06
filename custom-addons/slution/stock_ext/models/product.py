@@ -9,8 +9,21 @@ class ProductProduct(models.Model):
 
     qty_minimum = fields.Float(
         string="Minimum Quantity",
+        digits="Product Unit of Measure",
         default=0.0,
     )
+    is_less_than_minimum_quantity = fields.Boolean(
+        compute="_compute_is_less_than_minimum_quantity",
+        store=True,
+    )
+
+    @api.depends("qty_available", "qty_minimum")
+    def _compute_is_less_than_minimum_quantity(self):
+        for rec in self:
+            if rec.qty_available < rec.qty_minimum:
+                rec.is_less_than_minimum_quantity = True
+            else:
+                rec.is_less_than_minimum_quantity = False
 
 
 class ProductTemplate(models.Model):
@@ -20,6 +33,11 @@ class ProductTemplate(models.Model):
         string="Minimum Quantity",
         compute="_compute_qty_minimum",
         inverse="_set_qty_minimum",
+        digits="Product Unit of Measure",
+        store=True,
+    )
+    is_less_than_minimum_quantity = fields.Boolean(
+        compute="_compute_is_less_than_minimum_quantity",
         store=True,
     )
 
@@ -36,3 +54,11 @@ class ProductTemplate(models.Model):
         for template in self:
             if len(template.product_variant_ids) == 1:
                 template.product_variant_ids.qty_minimum = template.qty_minimum
+
+    @api.depends("qty_available", "qty_minimum")
+    def _compute_is_less_than_minimum_quantity(self):
+        for rec in self:
+            if rec.qty_available < rec.qty_minimum:
+                rec.is_less_than_minimum_quantity = True
+            else:
+                rec.is_less_than_minimum_quantity = False

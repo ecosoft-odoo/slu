@@ -7,20 +7,6 @@
             <filter name="company" position="after">
                 <filter string="Product Category" name="product_category" domain="[]" context="{'group_by': 'categ_id'}"/>
             </filter>
-            <filter name="reserved" position="after">
-                <filter name="less_than_minimum_quantity" string="Less than Minimum Quantity" domain="[('is_less_than_minimum_quantity', '=', True)]"/>
-            </filter>
-        </field>
-    </record>
-
-    <record id="view_stock_quant_tree_editable" model="ir.ui.view">
-        <field name="name">stock.quant.tree.editable</field>
-        <field name="model">stock.quant</field>
-        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
-        <field name="arch" type="xml">
-            <field name="quantity" position="before">
-                <field name="qty_minimum"/>
-            </field>
         </field>
     </record>
 </odoo>
