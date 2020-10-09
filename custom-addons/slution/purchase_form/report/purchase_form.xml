@@ -9,7 +9,7 @@
                         <div class="col-3">
                             <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="width: inherit;"/>
                         </div>
-                        <div class="col-9" style="font-size: 14px !important;">
+                        <div class="col-9" style="font-size: 14px !important;padding: 0px;">
                             <strong t-esc="word_dict['company_name'][lang]" style="font-size: 20px !important;"/><br/>
                             <strong t-esc="word_dict['company_address'][lang]"/><br/>
                             <strong t-esc="'%s %s' % (word_dict['company_phone'][lang], word_dict['company_fax'][lang])"/><br/>
@@ -101,8 +101,8 @@
                             <span t-field="o.partner_id.street2"/>
                             <span t-field="o.partner_id.city"/>
                             <span t-field="o.partner_id.state_id.name"/>
-                            <span t-field="o.partner_id.country_id.name"/>
                             <span t-field="o.partner_id.zip"/>
+                            <span t-field="o.partner_id.country_id.name"/>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,8 @@
                         <div class="col-2">
                             <strong t-esc="word_dict['fax'][lang]"/>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" style="padding: 0px;">
+                            <span t-field="o.partner_id.fax"/>
                         </div>
                     </div>
                 </div>
@@ -166,11 +167,11 @@
             <table class="table table-sm table-borderless mt8">
                 <thead>
                     <tr class="text-center" style="border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['number'][lang]"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['description'][lang]"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['quantity'][lang]"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
-                        <th style="vertical-align: middle;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
+                        <th style="vertical-align: middle;width: 6%;"><span t-esc="word_dict['number'][lang]"/></th>
+                        <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['description'][lang]"/></th>
+                        <th style="vertical-align: middle;width: 5%;"><span t-esc="word_dict['quantity'][lang]"/></th>
+                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
+                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -96,7 +96,7 @@ class SaleOrder(models.Model):
                 },
                 "price_validity": {
                     "en": "Price Validity:",
-                    "th": "กำหนดยื่นราคา:",
+                    "th": "กำหนดยืนราคา:",
                 },
                 "payment_term": {
                     "en": "Payment Term:",
