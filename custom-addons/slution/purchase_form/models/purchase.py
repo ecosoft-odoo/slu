@@ -99,7 +99,7 @@ class PurchaseOrder(models.Model):
                     "th": "เงื่อนไขชำระเงิน:",
                 },
                 "incoterms": {
-                    "en": "INCOTERMS:",
+                    "en": "Incoterms:",
                     "th": "วิธีจัดส่ง:",
                 },
                 "shipping_date": {
