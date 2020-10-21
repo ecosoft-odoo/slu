@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-9" style="font-size: 14px !important;padding: 0px;">
                             <strong t-esc="word_dict['company_name'][lang]" style="font-size: 20px !important;"/><br/>
-                            <strong t-esc="word_dict['company_address'][lang]"/><br/>
+                            <strong t-esc="word_dict['company_address'][lang]" t-att-style="'font-size: ' + (lang == 'en' and '12' or '14') + 'px'"/><br/>
                             <strong t-esc="'%s %s' % (word_dict['company_phone'][lang], word_dict['company_fax'][lang])"/><br/>
                             <strong t-esc="'%s %s' % (word_dict['company_email'][lang], word_dict['company_website'][lang])"/><br/>
                             <strong t-esc="word_dict['company_tax_id'][lang]"/>
@@ -109,7 +109,7 @@
                 <div class="col-5">
                     <div class="row">
                         <div class="col-5">
-                            <strong t-esc="word_dict['ship_via'][lang]"/>
+                            <strong t-esc="word_dict['incoterms'][lang]"/>
                         </div>
                         <div class="col-7">
                             <span t-field="o.incoterm_id.name"/>

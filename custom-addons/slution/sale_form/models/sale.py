@@ -68,7 +68,7 @@ class SaleOrder(models.Model):
                 },
                 "tax_id": {
                     "en": "Tax-ID:",
-                    "th": "หมายเลขประจำตัวผู้เสียภาษี:",
+                    "th": "TAX-ID:",
                 },
                 "address": {
                     "en": "Address:",

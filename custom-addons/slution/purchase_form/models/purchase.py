@@ -68,7 +68,7 @@ class PurchaseOrder(models.Model):
                 },
                 "tax_id": {
                     "en": "Tax-ID:",
-                    "th": "หมายเลขประจำตัวผู้เสียภาษี:",
+                    "th": "TAX-ID:",
                 },
                 "address": {
                     "en": "Address:",
@@ -98,8 +98,8 @@ class PurchaseOrder(models.Model):
                     "en": "Payment Term:",
                     "th": "เงื่อนไขชำระเงิน:",
                 },
-                "ship_via": {
-                    "en": "Ship Via:",
+                "incoterms": {
+                    "en": "INCOTERMS:",
                     "th": "วิธีจัดส่ง:",
                 },
                 "shipping_date": {
