@@ -71,10 +71,10 @@
             <div class="row">
                 <div class="col-7">
                     <div class="row">
-                        <div t-att-class="'col-3' if lang == 'en' else 'col-6'">
+                        <div class="col-3">
                             <strong t-esc="word_dict['tax_id'][lang]"/>
                         </div>
-                        <div t-att-class="'col-9' if lang == 'en' else 'col-6'">
+                        <div class="col-9">
                             <span t-field="o.partner_id.vat"/>
                         </div>
                     </div>
