@@ -68,7 +68,7 @@ class SaleOrder(models.Model):
                 },
                 "tax_id": {
                     "en": "Tax-ID:",
-                    "th": "TAX-ID:",
+                    "th": "Tax-ID:",
                 },
                 "address": {
                     "en": "Address:",
