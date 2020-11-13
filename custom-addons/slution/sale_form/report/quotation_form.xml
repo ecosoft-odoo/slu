@@ -128,26 +128,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5"></div>
-            </div>
-            <div class="row">
-                <div class="col-7">
+                <div class="col-5" style="margin-top: -20px;">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-5">
                             <strong t-esc="word_dict['phone'][lang]"/>
                         </div>
-                        <div class="col-4">
+                        <div class="col-7">
                             <span t-field="o.partner_id.phone"/>
                         </div>
-                        <div class="col-2">
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
                             <strong t-esc="word_dict['fax'][lang]"/>
                         </div>
-                        <div class="col-3" style="padding: 0px;">
+                        <div class="col-7">
                             <span t-field="o.partner_id.fax"/>
                         </div>
                     </div>
                 </div>
-                <div class="col-5"></div>
             </div>
             <div class="text-center" style="margin: 20px; font-size: 15px;" t-esc="word_dict['description'][lang]"/>
         </div>
@@ -159,7 +157,6 @@
             <table class="table table-sm table-borderless mt8">
                 <thead>
                     <tr class="text-center" style="border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
-                        <th style="vertical-align: middle;width: 6%;"><span t-esc="word_dict['number'][lang]"/></th>
                         <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['description'][lang]"/></th>
                         <th style="vertical-align: middle;width: 5%;"><span t-esc="word_dict['quantity'][lang]"/></th>
                         <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="o.currency_id.currency_unit_label"/></th>
@@ -167,7 +164,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-set="number" t-value="0"/>
                     <t t-set="current_subtotal" t-value="0"/>
                     <t t-set="subtotal" t-value="0"/>
                     <t t-set="is_include_tax" t-value="any(o.order_line.mapped('tax_id').mapped('price_include'))"/>
@@ -177,10 +173,6 @@
                         <t t-set="subtotal" t-value="subtotal + amount"/>
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''" style="border-bottom: 1px solid lightgray;">
                             <t t-if="not line.display_type">
-                                <td class="text-right" style="padding: 5px;">
-                                    <t t-set="number" t-value="number + 1"/>
-                                    <span t-esc="number"/>
-                                </td>
                                 <td style="padding: 5px;">
                                     <span t-field="line.name"/>
                                 </td>
@@ -188,17 +180,20 @@
                                     <span t-esc="'{0:,.3f}'.format(line.product_uom_qty)"/>
                                 </td>
                                 <td class="text-right" style="padding: 5px;">
-                                    <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
+                                    <t t-if="line.price_unit">
+                                        <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
+                                    </t>
                                 </td>
                                 <td class="text-right" style="padding: 5px;">
-                                    <span t-esc="amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    <t t-if="amount">
+                                        <span t-esc="amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                    </t>
                                 </td>
                             </t>
                             <t t-if="line.display_type == 'line_section'">
                                 <td name="td_section_line" colspan="99">
                                     <span t-field="line.name"/>
                                 </td>
-                                <t t-set="number" t-value="0"/>
                                 <t t-set="current_subtotal" t-value="0"/>
                                 <t t-set="current_section" t-value="line"/>
                             </t>
@@ -294,21 +289,21 @@
         <div class="footer">
             <div class="row">
                 <div class="col-4" style="border: 1px solid;border-right: 0px;">
-                    <br/><br/><br/><br/><br/>__________________________________________
+                    <br/><br/><br/>__________________________________________
                     <div class="text-center" t-esc="word_dict['order_by'][lang]"/>
                     <div class="text-center">
                         <span t-esc="word_dict['date'][lang]"/>______/______/______
                     </div>
                 </div>
                 <div class="col-4" style="border: 1px solid;">
-                    <br/><br/><br/><br/><br/>__________________________________________
+                    <br/><br/><br/>__________________________________________
                     <div class="text-center" t-esc="word_dict['prepared_by'][lang]"/>
                     <div class="text-center">
                         <span t-esc="word_dict['date'][lang]"/>______/______/______
                     </div>
                 </div>
                 <div class="col-4" style="border: 1px solid;border-left: 0px;">
-                    <br/><br/><br/><br/><br/>__________________________________________
+                    <br/><br/><br/>__________________________________________
                     <div class="text-center" t-esc="word_dict['authorized_signature'][lang]"/>
                     <div class="text-center">
                         <span t-esc="word_dict['date'][lang]"/>______/______/______
