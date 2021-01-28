@@ -40,7 +40,11 @@
             </table>
             <t t-set="i" t-value="1"/>
             <t t-set="grandtotal" t-value="0"/>
-            <t t-set="reports" t-value="o.report_ids"/>
+            <!-- Old Code -->
+            <!-- <t t-set="reports" t-value="o.report_ids"/> -->
+
+            <!-- New Code : filter residual amount not equal to zero -->
+            <t t-set="reports" t-value="o.report_ids.filtered(lambda l: l.amount_residual)"/>
             <t t-foreach="reports.mapped('partner_id').sorted('name')" t-as="partner">
                 <t t-set="subtotal" t-value="0"/>
                 <p t-field="partner.display_name"/>
@@ -55,13 +59,38 @@
                             <th class="text-center" style="width: 19%;">Memo</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <!-- Old Code -->
+                    <!-- <tbody>
                         <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner).sorted('name')" t-as="line">
                             <t t-set="subtotal" t-value="subtotal + line.amount_total"/>
                             <td class="text-right"><span t-field="line.invoice_date"/></td>
                             <td class="text-left"><span t-field="line.name"/></td>
                             <td class="text-left"><span t-field="line.ref"/></td>
                             <td class="text-right"><span t-esc="'{0:,.2f}'.format(line.amount_total)"/></td>
+                            <td class="text-right"><span t-field="line.invoice_date_due"/></td>
+                            <td class="text-left"><span t-field="line.communication"/></td>
+                        </tr>
+                        <tr style="background-color: #F0F0F0;">
+                            <t t-set="grandtotal" t-value="grandtotal + subtotal"/>
+                            <td class="text-right" colspan="3"><b>Total</b></td>
+                            <td class="text-right"><b t-esc="'{0:,.2f}'.format(subtotal)"/></td>
+                            <td class="text-left" colspan="2"></td>
+                        </tr>
+                        <tr t-if="len(reports.mapped('partner_id')) == i" style="background-color: #F0F0F0;">
+                            <td class="text-right" colspan="3"><b>Grand Total</b></td>
+                            <td class="text-right"><b t-esc="'{0:,.2f}'.format(grandtotal)"/></td>
+                            <td class="text-left" colspan="2"></td>
+                        </tr>
+                    </tbody> -->
+
+                    <!-- New Code : Change total amount to residual amount -->
+                    <tbody>
+                        <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner).sorted('name')" t-as="line">
+                            <t t-set="subtotal" t-value="subtotal + line.amount_residual"/>
+                            <td class="text-right"><span t-field="line.invoice_date"/></td>
+                            <td class="text-left"><span t-field="line.name"/></td>
+                            <td class="text-left"><span t-field="line.ref"/></td>
+                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(line.amount_residual)"/></td>
                             <td class="text-right"><span t-field="line.invoice_date_due"/></td>
                             <td class="text-left"><span t-field="line.communication"/></td>
                         </tr>

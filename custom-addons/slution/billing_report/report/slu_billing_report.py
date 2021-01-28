@@ -25,6 +25,7 @@ class SLUBillingReport(models.Model):
     name = fields.Char()
     ref = fields.Char()
     amount_total = fields.Float()
+    amount_residual = fields.Float()
     invoice_date_due = fields.Date()
     communication = fields.Char()
 
@@ -32,7 +33,7 @@ class SLUBillingReport(models.Model):
         sql = """
             SELECT ROW_NUMBER() OVER(ORDER BY am.id, ap.id) AS id,
                    am.salesperson_id, am.partner_id, am.operating_unit_id,
-                   am.company_id, am.invoice_date, am.name, am.ref,
+                   am.company_id, am.invoice_date, am.name, am.ref, am.amount_residual,
                    (CASE WHEN am.type = 'out_invoice' THEN 1 ELSE -1 END) *
                    (CASE WHEN am.is_installment = False THEN am.amount_total
                    ELSE ap.amount END) AS amount_total,
