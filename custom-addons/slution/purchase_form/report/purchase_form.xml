@@ -170,8 +170,8 @@
                         <th style="vertical-align: middle;width: 6%;"><span t-esc="word_dict['number'][lang]"/></th>
                         <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['description'][lang]"/></th>
                         <th style="vertical-align: middle;width: 5%;"><span t-esc="word_dict['quantity'][lang]"/></th>
-                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
-                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-field="o.currency_id.currency_unit_label"/></th>
+                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-field="o.currency_id.name"/></th>
+                        <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['amount'][lang]"/><br/><span t-field="o.currency_id.name"/></th>
                     </tr>
                 </thead>
                 <tbody>
