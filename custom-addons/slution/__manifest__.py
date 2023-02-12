@@ -22,6 +22,7 @@
         "account_invoice_form/data/paper_format.xml",
         "account_invoice_form/data/report_data.xml",
         "account_invoice_form/report/account_invoice_form.xml",
+        "account_invoice_form/report/report_invoice.xml",
         "hr_salesperson/report/sale_report_views.xml",
         "hr_salesperson/report/account_invoice_report_views.xml",
         "hr_salesperson/views/sale_views.xml",
