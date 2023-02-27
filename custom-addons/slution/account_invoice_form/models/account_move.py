@@ -11,7 +11,7 @@ class AccountMove(models.Model):
         self.ensure_one()
         sale_orders = self.mapped("invoice_line_ids.sale_line_ids.order_id")
         stock_move_lines = sale_orders.mapped("picking_ids.move_lines.move_line_ids")
-        deposit_product_id = self.env['ir.config_parameter'].sudo().get_param('sale.default_deposit_product_id')
+        deposit_product_id = self.env["ir.config_parameter"].sudo().get_param("sale.default_deposit_product_id")
 
         datas = {
             "amount_subtotal": 0.00,
@@ -27,13 +27,23 @@ class AccountMove(models.Model):
                 datas["deposit"] += line.price_subtotal
             else:
                 invoice_line = line._prepare_invoice_lines()
-                lots = stock_move_lines.filtered(
+                # Find Lots
+                sml = stock_move_lines.filtered(
                     lambda l: l.state == "done" and l.lot_id and l.product_id == line.product_id
-                ).mapped("lot_id")
+                )
+                lot_by_product = sml.mapped("lot_id")
+                lots = self.env["stock.production.lot"]
+                for lbp in lot_by_product:
+                    sml_by_lot = sml.filtered(lambda l: l.lot_id == lbp)
+                    for l in sml_by_lot:
+                        a = sum(sml_by_lot.filtered(lambda x: x.location_id == l.location_id and x.location_dest_id == l.location_dest_id).mapped("qty_done"))
+                        b = sum(sml_by_lot.filtered(lambda x: x.location_id == l.location_dest_id and x.location_dest_id == l.location_id).mapped("qty_done"))
+                        if a - b != 0:
+                            lots |= lbp
                 if lots:
                     invoice_line["lots"] = [lot.name for lot in lots]
                 invoice_lines.append(invoice_line)
-                datas["amount_subtotal"] += invoice_line['price_subtotal']
+                datas["amount_subtotal"] += invoice_line["price_subtotal"]
         datas["invoice_lines"] = invoice_lines
 
         if datas["deposit"]:

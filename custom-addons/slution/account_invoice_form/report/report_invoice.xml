@@ -1,0 +1,40 @@
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <!-- Change title and move invoice no -->
+        <xpath expr="//h2" position="replace">
+            <h2>
+                <span t-if="o.type == 'out_invoice' and o.state == 'posted'">INVOICE</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'draft'">DRAFT INVOICE</span>
+                <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">CANCELLED INVOICE</span>
+                <span t-if="o.type == 'out_refund'">CREDIT NOTE</span>
+                <span t-if="o.type == 'in_refund'">VENDOR CREDIT NOTE</span>
+                <span t-if="o.type == 'in_invoice'">VENDOR BILL</span>
+            </h2>
+        </xpath>
+        <xpath expr="//div[@name='invoice_date']" position="before">
+            <div class="col-auto mw-100 mb-2" t-if="o.name != '/'" name="name">
+                <strong>Invoice No:</strong>
+                <p class="m-0" t-field="o.name"/>
+            </div>
+        </xpath>
+        <!-- Hide Taxes column -->
+        <xpath expr="//th[@name='th_taxes']" position="replace"/>
+        <xpath expr="//t[@t-if='not line.display_type']/td[5]" position="replace"/>
+        <!-- Add number column -->
+        <xpath expr="//t[@t-set='current_subtotal'][1]" position="after">
+            <t t-set="no" t-value="0"/>
+        </xpath>
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_no" class="text-left"><span>No</span></th>
+        </xpath>
+        <xpath expr="//td[@name='account_invoice_line_name']" position="before">
+            <t t-set="no" t-value="no + 1"/>
+            <td><span t-esc="no"/></td>
+        </xpath>
+        <xpath expr="//t[@t-set='current_subtotal'][4]" position="after">
+            <t t-set="no" t-value="0"/>
+        </xpath>
+        <!-- Hide text 'Please use the following communication for your payment' -->
+        <xpath expr="//p[@t-if='o.type in ('out_invoice', 'in_refund')']" position="replace"/>
+    </template>
+</odoo>
