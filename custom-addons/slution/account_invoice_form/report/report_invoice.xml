@@ -31,10 +31,10 @@
             <t t-set="no" t-value="no + 1"/>
             <td><span t-esc="no"/></td>
         </xpath>
-        <xpath expr="//t[@t-set='current_subtotal'][4]" position="after">
+        <xpath expr="//t[@t-set='current_section']" position="after">
             <t t-set="no" t-value="0"/>
         </xpath>
         <!-- Hide text 'Please use the following communication for your payment' -->
-        <xpath expr="//p[@t-if='o.type in ('out_invoice', 'in_refund')']" position="replace"/>
+        <xpath expr="//span[@t-field='o.invoice_payment_ref']/../.." position="replace"/>
     </template>
 </odoo>
