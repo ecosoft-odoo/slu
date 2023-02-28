@@ -151,7 +151,7 @@
             <table class="table table-sm table-borderless mt8">
                 <thead>
                     <tr class="text-center" style="border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
-                        <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['number'][lang]"/></th>
+                        <th style="vertical-align: middle;width: 6%;"><span t-esc="word_dict['number'][lang]"/></th>
                         <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['description'][lang]"/></th>
                         <th style="vertical-align: middle;width: 5%;"><span t-esc="word_dict['quantity'][lang]"/></th>
                         <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="o.currency_id.currency_unit_label"/></th>
