@@ -151,6 +151,7 @@
             <table class="table table-sm table-borderless mt8">
                 <thead>
                     <tr class="text-center" style="border-bottom: 1px solid lightgray;border-top: 1px solid lightgray;">
+                        <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['number'][lang]"/></th>
                         <th style="vertical-align: middle;width: 59%;"><span t-esc="word_dict['description'][lang]"/></th>
                         <th style="vertical-align: middle;width: 5%;"><span t-esc="word_dict['quantity'][lang]"/></th>
                         <th style="vertical-align: middle;width: 15%;"><span t-esc="word_dict['unit_price'][lang]"/><br/><span t-esc="o.currency_id.currency_unit_label"/></th>
@@ -160,6 +161,7 @@
                 <tbody>
                     <t t-set="current_subtotal" t-value="0"/>
                     <t t-set="subtotal" t-value="0"/>
+                    <t t-set="number" t-value="0"/>
                     <t t-set="is_include_tax" t-value="any(o.order_line.mapped('tax_id').mapped('price_include'))"/>
                     <t t-foreach="o.order_line" t-as="line">
                         <t t-set="amount" t-value="line.product_uom_qty * line.price_unit"/>
@@ -167,6 +169,10 @@
                         <t t-set="subtotal" t-value="subtotal + amount"/>
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''" style="border-bottom: 1px solid lightgray;">
                             <t t-if="not line.display_type">
+                                <td style="padding: 5px;">
+                                    <t t-set="number" t-value="number + 1"/>
+                                    <span t-esc="number"/>
+                                </td>
                                 <td style="padding: 5px;">
                                     <span t-field="line.name"/>
                                 </td>
@@ -189,6 +195,7 @@
                                     <span t-field="line.name"/>
                                 </td>
                                 <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="number" t-value="0"/>
                                 <t t-set="current_section" t-value="line"/>
                             </t>
                             <t t-if="line.display_type == 'line_note'">
