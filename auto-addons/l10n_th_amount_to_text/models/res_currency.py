@@ -5,7 +5,17 @@ from num2words import num2words
 
 from odoo import models, tools
 
-CURRENCY_NAME = {"Dollars": "ดอลลาร์", "Euros": "ยูโร", "Cents": "เซนต์"}
+CURRENCY_NAME = {
+    "Dollars": "ดอลลาร์",
+    "Euros": "ยูโร",
+    "Cents": "เซนต์",
+    "Yuan": "หยวน",
+    "Fen": "เฟิน",
+    "Sterling": "ปอนด์สเตอร์ลิง",
+    "Penny": "เพนนี",
+    "Yen": "เยน",
+    "Cen": "เซน",
+}
 
 
 class Currency(models.Model):
