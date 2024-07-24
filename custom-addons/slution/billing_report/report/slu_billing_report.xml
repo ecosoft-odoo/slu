@@ -85,7 +85,7 @@
 
                     <!-- New Code : Change total amount to residual amount -->
                     <tbody>
-                        <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner).sorted('name')" t-as="line">
+                        <tr t-foreach="reports.filtered(lambda l: l.partner_id == partner).sorted(key=lambda r: (r.invoice_date, r.name))" t-as="line">
                             <t t-set="subtotal" t-value="subtotal + line.amount_residual"/>
                             <td class="text-right"><span t-field="line.invoice_date"/></td>
                             <td class="text-left"><span t-field="line.name"/></td>
