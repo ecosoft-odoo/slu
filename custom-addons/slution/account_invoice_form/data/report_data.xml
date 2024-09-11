@@ -7,5 +7,16 @@
             file="slution.slution_invoice_form_pdf"
             report_type="qweb-pdf"
             print_report_name="object.display_name"
-            paperformat="slution.slution_paperformat_invoice"/>
+            paperformat="slution.slution_paperformat_invoice"
+            context="{'has_company_logo': True}"/>
+
+    <report string="ใบส่งของ (no logo)"
+            id="account_invoice_form_pdf_report"
+            model="account.move"
+            name="slution.slution_invoice_form_pdf"
+            file="slution.slution_invoice_form_pdf"
+            report_type="qweb-pdf"
+            print_report_name="object.display_name"
+            paperformat="slution.slution_paperformat_invoice"
+            context="{'has_company_logo': False}"/>
 </odoo>
