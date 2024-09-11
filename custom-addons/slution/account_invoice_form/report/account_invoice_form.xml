@@ -4,8 +4,10 @@
         <div class="header">
             <div class="row">
                 <div class="col-9">
-                    <t t-set="company" t-value="o.company_id"/>
-                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
+                    <t t-if="context.get('has_company_logo', False)">
+                        <t t-set="company" t-value="o.company_id"/>
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
+                    </t>
                 </div>
                 <div class="col-3 text-center">
                     <h3>ใบส่งของ</h3>

@@ -17,6 +17,7 @@
         "account_check_deposit",
         "l10n_th_amount_to_text",
         "partner_fax",
+        "report_context",
     ],
     "data": [
         "account_invoice_form/data/paper_format.xml",
