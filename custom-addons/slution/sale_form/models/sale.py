@@ -105,9 +105,9 @@ class SaleOrder(models.Model):
                 "description": {
                     "en": "Thank you for your inquiry. We have the pleasure "
                           "in offering you as the following detail.",
-                    "th": "ห้างฯ มีความยินดีเสนอราคาอุปกรณ์ประกอบสำหรับ"
+                    "th": "บริษัทมีความยินดีเสนอราคาอุปกรณ์ประกอบสำหรับ"
                           "เครื่องมืออิเล็กทรอนิกส์ทางทะเล "
-                          "ตามที่ท่านได้สอบถามมายังห้างฯ ดังนี้",
+                          "ตามที่ท่านได้สอบถามมายังบริษัท ดังนี้",
                 },
             },
             "article": {
